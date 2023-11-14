@@ -1,0 +1,11 @@
+[package]
+name = "example_1_cache"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ethers = "2"
+revm = { version = "3", features = [ "ethersdb" ]}
+tokio = "1"
