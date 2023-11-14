@@ -3,4 +3,5 @@ resolver = "2"
 
 members = [
     "example_1_cache",
+    "example_2_cache_slots",
 ]

@@ -1,4 +1,4 @@
-## A basic example of trying to simply the only example present in REVM
+## A basic example of trying to simplify the only example present in REVM
 
 https://github.com/bluealloy/revm/blob/310cabaa0a1306687dd4a8218a74c27fb338bbc8/examples/fork_ref_transact.rs
 
