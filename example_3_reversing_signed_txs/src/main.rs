@@ -1,9 +1,6 @@
 use ethers::{
     types::transaction::eip2718::TypedTransaction,
-    utils::{
-        rlp::{Rlp},
-        hex
-    }
+    utils::{hex, rlp::Rlp},
 };
 
 fn main() {
@@ -22,8 +19,6 @@ fn main() {
     // https://github.com/gakonst/ethers-rs/issues/561
     // https://github.com/gakonst/ethers-rs/pull/805
     // https://github.com/gakonst/ethers-rs/pull/805/files#diff-c57e9a06ef7b5f55c5498a79e30dfd71f1e395b11c58a50d340a6276bf0dec65R395-R406
-    let tx_req = TypedTransaction::decode_signed(
-        &Rlp::new(tx_hex.as_slice())
-    );
+    let tx_req = TypedTransaction::decode_signed(&Rlp::new(tx_hex.as_slice()));
     println!("{:?}", tx_req);
 }

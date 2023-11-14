@@ -1,7 +1,7 @@
 use ethers::{
+    contract::BaseContract,
     core::abi::parse_abi,
     providers::{Http, Provider},
-    contract::BaseContract,
 };
 use revm::{
     db::EthersDB,
@@ -20,9 +20,9 @@ async fn main() {
 
 async fn get_reserves_using_ethersdb() -> (u128, u128, u32) {
     // create ethers client and wrap it in Arc<M>
-    let client = Provider::<Http>::try_from(
-        "https://mainnet.infura.io/v3/c60b0bb42f8a4c6481ecd229eddaca27",
-    ).unwrap();
+    let client =
+        Provider::<Http>::try_from("https://mainnet.infura.io/v3/c60b0bb42f8a4c6481ecd229eddaca27")
+            .unwrap();
     let client = Arc::new(client);
 
     // ----------------------------------------------------------- //
@@ -78,7 +78,10 @@ async fn get_reserves_using_ethersdb() -> (u128, u128, u32) {
         println!("Address: {}", address);
         println!("Address Storage:");
         for (key, storage_slot) in account.storage.iter() {
-            println!("{} {} {}", key, storage_slot.previous_or_original_value, storage_slot.present_value);
+            println!(
+                "{} {} {}",
+                key, storage_slot.previous_or_original_value, storage_slot.present_value
+            );
         }
         println!("Address is contract: {}", account.info.code.is_some());
         println!("------------------------------------------------------")
@@ -96,7 +99,8 @@ async fn get_reserves_using_ethersdb() -> (u128, u128, u32) {
     };
 
     // decode bytes to reserves + ts via ethers-rs's abi decode
-    let (reserve0, reserve1, ts): (u128, u128, u32) = abi.decode_output("getReserves", value).unwrap();
+    let (reserve0, reserve1, ts): (u128, u128, u32) =
+        abi.decode_output("getReserves", value).unwrap();
 
     // Print emulated getReserves() call output
     println!("Reserve0: {:#?}", reserve0);
@@ -104,6 +108,6 @@ async fn get_reserves_using_ethersdb() -> (u128, u128, u32) {
     println!("Timestamp: {:#?}", ts);
 
     println!("EthersDB: Finished in {:?}", tx_start.elapsed());
-    
+
     (reserve0, reserve1, ts)
 }
