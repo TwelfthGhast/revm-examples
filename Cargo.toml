@@ -4,4 +4,5 @@ resolver = "2"
 members = [
     "example_1_cache",
     "example_2_cache_slots",
+    "example_3_reversing_signed_txs",
 ]
